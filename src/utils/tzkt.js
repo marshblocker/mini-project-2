@@ -1,5 +1,3 @@
-// TODO 8 - Fetch storage of the Lottery by completing fetchStorage
-
 import axios from "axios"
 import { CONTRACT_ADDRESS } from "./tezos";
 
@@ -19,7 +17,8 @@ export const fetchStorageData = async () => {
             epoch: res.data.epoch,
             admin: res.data.admin,
             cancelOwner: res.data.cancelOwner,
-            cancelCounterparty: res.data.cancelCounterparty
+            cancelCounterparty: res.data.cancelCounterparty,
+            contractTerminated: res.data.contractTerminated
         };
     } catch (error) {
         throw error;        

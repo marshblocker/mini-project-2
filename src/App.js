@@ -31,7 +31,8 @@ const App = () => {
 		fromCounterparty: 0,
 		epoch: "",
 		cancelOwner: false,
-		cancelCounterparty: false
+		cancelCounterparty: false,
+		contractTerminated: false
 	});
 	const [loading, setLoading] = useState(false);
 	const totalBalance = contractData.balanceOwner + contractData.balanceCounterparty;
@@ -58,7 +59,6 @@ const App = () => {
 	}, []);
 
 	useEffect(() => {
-		console.log(contractData);
 		setLoading(false);
 	}, [contractData])
 
@@ -180,8 +180,10 @@ const App = () => {
 				onConnectWallet={onConnectWallet}
 				loading={loading}
 			/>
-			{ 
-				loading 
+			{
+				contractData.contractTerminated
+				? <div className='d-flex flex-column justify-content-center align-items-center'><h3>This contract has already terminated.</h3></div>
+				: loading 
 				? <div className='d-flex flex-column justify-content-center align-items-center'><h3>Loading...</h3></div>
 				: 	<MainContent 
 						account={account} 
@@ -209,7 +211,8 @@ const getContractData = async (storageData) => {
 		fromCounterparty: storageData.fromCounterparty,
 		cancelOwner: storageData.cancelOwner,
 		cancelCounterparty: storageData.cancelCounterparty,
-		epoch: storageData.epoch
+		epoch: storageData.epoch,
+		contractTerminated: storageData.contractTerminated
 	}
 }
 
