@@ -18,5 +18,5 @@ Up to **Milestone 5**.
 [Youtube link](https://youtu.be/O9sv8O_8Ndg)
 
 ### Implementation specifics
-- When the owner/counter withdraws the fund or cancels the escrow, the contract will be terminated and its endpoints would be unusable.
+- When the owner/counter withdraws the fund or cancels the escrow, the contract will be terminated and its endpoints would be unusable. You can change the contract by pressing _Change Contract_ below the website or by changing `CONTRACT_ADDRESS` in `App.js`.
 - Refreshing the website will return the user to the contract set in `CONTRACT_ADDRESS` in `App.js`.
