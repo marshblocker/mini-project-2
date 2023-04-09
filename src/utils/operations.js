@@ -1,10 +1,10 @@
-import { CONTRACT_ADDRESS, tezos } from "./tezos"
+import { tezos } from "./tezos"
 import { fetchStorageData } from "./tzkt";
 
-export const depositFund = async (accountAddress) => {
+export const depositFund = async (accountAddress, contractAddress) => {
     try {
-        const contract = await tezos.wallet.at(CONTRACT_ADDRESS);
-        const storageData = await fetchStorageData();
+        const contract = await tezos.wallet.at(contractAddress);
+        const storageData = await fetchStorageData(contractAddress);
 
         if (accountAddress === storageData.owner) {
             const fromOwner = storageData.fromOwner;
@@ -40,10 +40,10 @@ export const depositFund = async (accountAddress) => {
     }
 }
 
-export const claimFund = async (accountAddress, secret) => {
+export const claimFund = async (accountAddress, secret, contractAddress) => {
     try {
-        const contract = await tezos.wallet.at(CONTRACT_ADDRESS);
-        const storageData = await fetchStorageData();
+        const contract = await tezos.wallet.at(contractAddress);
+        const storageData = await fetchStorageData(contractAddress);
 
         if (accountAddress === storageData.owner) {
             const op = await contract
@@ -70,10 +70,10 @@ export const claimFund = async (accountAddress, secret) => {
 }
 
 // Called by owner or counterparty.
-export const cancelEscrow = async (accountAddress) => {
+export const cancelEscrow = async (accountAddress, contractAddress) => {
     try {
-        const contract = await tezos.wallet.at(CONTRACT_ADDRESS);
-        const storageData = await fetchStorageData();
+        const contract = await tezos.wallet.at(contractAddress);
+        const storageData = await fetchStorageData(contractAddress);
 
         if (accountAddress === storageData.owner) {
             const op = await contract
@@ -99,10 +99,10 @@ export const cancelEscrow = async (accountAddress) => {
 }
 
 // Called by admin.
-export const revertEscrow = async (accountAddress) => {
+export const revertEscrow = async (accountAddress, contractAddress) => {
     try {
-        const contract = await tezos.wallet.at(CONTRACT_ADDRESS);
-        const storageData = await fetchStorageData();
+        const contract = await tezos.wallet.at(contractAddress);
+        const storageData = await fetchStorageData(contractAddress);
 
         if (accountAddress !== storageData.admin) {
             throw Error('Only the admin can revert the escrow.');

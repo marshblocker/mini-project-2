@@ -1,10 +1,9 @@
 import axios from "axios"
-import { CONTRACT_ADDRESS } from "./tezos";
 
-export const fetchStorageData = async () => {
+export const fetchStorageData = async (contractAddress) => {
     try {
         const res = await axios.get(
-            `https://api.ghostnet.tzkt.io/v1/contracts/${CONTRACT_ADDRESS}/storage`
+            `https://api.ghostnet.tzkt.io/v1/contracts/${contractAddress}/storage`
         );
     
         return {
