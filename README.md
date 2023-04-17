@@ -8,8 +8,10 @@ Built with Taquito, Smartpy, and React.
     > npm build
     > npm start
 ```
-
 You can change the initial contract address in the `CONTRACT_ADDRESS` constant in `App.js`.
+
+**Note:** The website will be running on `localhost:3000` by default and it has only
+been tested in Google Chrome.
 
 ### Features
 Up to **Milestone 5**.
@@ -19,4 +21,4 @@ Up to **Milestone 5**.
 
 ### Implementation specifics
 - When the owner/counter withdraws the fund or cancels the escrow, the contract will be terminated and its endpoints would be unusable. You can change the contract by pressing _Change Contract_ below the website or by changing `CONTRACT_ADDRESS` in `App.js`.
-- Refreshing the website will return the user to the contract set in `CONTRACT_ADDRESS` in `App.js`.
+- Cookies are used to store the contract address.

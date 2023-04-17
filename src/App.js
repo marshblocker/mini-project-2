@@ -11,8 +11,11 @@ import {
 	depositFund,
 	revertEscrow,
 } from "./utils/operations";
+import { contractAddressInCookie, getContractAddressInCookie } from "./utils/cookie";
 
-const CONTRACT_ADDRESS = "KT1BeXMCMuFumx6Sv82YLHa7BmvaKtb6af23";
+let CONTRACT_ADDRESS = contractAddressInCookie()
+	? getContractAddressInCookie()
+	: "KT1BeXMCMuFumx6Sv82YLHa7BmvaKtb6af23";
 
 const AccountType = {
 	Owner: "Owner",
@@ -218,6 +221,11 @@ const App = () => {
 			return;
 		}
 
+		document.cookie =
+			"contract_address=" +
+			newContractAddress +
+			"; path=/; max-age=" +
+			1 * 86400;
 		setContractAddress(newContractAddress);
 	};
 
